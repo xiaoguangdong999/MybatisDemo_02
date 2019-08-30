@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	
+	<settings>
+		<setting name="cacheEnabled" value="true"/>
+	</settings>
+	
+	<!-- 配置域对象别名 -->
+	<typeAliases>
+		<!-- 对单个对象起别名 -->
+		<!-- <typeAlias type="com.woniu.mybatis.domian.User" alias="user"/> -->
+		
+		<!-- 针对此包下面所有的对象起别名  别名默认 就是类名  或者 类名首字母小写 -->
+		<package name="com.woniu.mybatis.domian"/>
+		<package name="com.woniu.mybatis.pojo"/>
+	</typeAliases>
+	
+
+	<!-- 和spring整合后 environments配置将废除-->
+	<environments default="development">
+		<environment id="development">
+		<!-- 使用jdbc事务管理-->
+			<transactionManager type="JDBC" />
+		<!-- 数据库连接池-->
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://localhost:3306/book?characterEncoding=utf-8" />
+				<property name="username" value="root" />
+				<property name="password" value="1234" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- 引入mapper文件 -->
+	<mappers>
+		<mapper resource="com/woniu/mybatis/mapper/UserMapper.xml"/>
+		<mapper resource="com/woniu/mybatis/mapper/BookMapper.xml"/>
+		<!-- <package name="com.woniu.mybatis.mapper"/> -->
+	</mappers>
+	
+	
+</configuration>
