@@ -3,6 +3,8 @@ package com.woniu.mybatis.domian;
 import java.util.Date;
 
 public class Comment {
+
+
 	private int commentid ;
 	private String content ;
 	private User user ;

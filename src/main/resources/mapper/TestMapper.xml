@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.mybatis.mapper.TestMapper">
+    <!-- 使用缓存   -->
+    <!-- <cache eviction="LRU"></cache> -->
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache">
+        <property name="timeToIdleSeconds" value="3600" />
+        <property name="timeToLiveSeconds" value="3600" />
+        <!-- 同ehcache参数maxElementsInMemory -->
+        <property name="maxEntriesLocalHeap" value="1000" />
+        <!-- 同ehcache参数maxElementsOnDisk -->
+        <property name="maxEntriesLocalDisk" value="10000000" />
+        <property name="memoryStoreEvictionPolicy" value="LRU" />
+    </cache>
+
+
+    <resultMap type="test" id="testMap">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+
+    </resultMap>
+
+    <select id="findTestById" parameterType="int" resultMap="testMap">
+        select * from tmp_test b where  b.id = #{id}
+    </select>
+
+
+
+
+</mapper>

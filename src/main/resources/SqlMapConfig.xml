@@ -28,9 +28,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<!-- 数据库连接池-->
 			<dataSource type="POOLED">
 				<property name="driver" value="com.mysql.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://localhost:3306/book?characterEncoding=utf-8" />
-				<property name="username" value="root" />
-				<property name="password" value="1234" />
+				<property name="url" value="jdbc:mysql://qdm157297398.my3w.com:3306/qdm157297398_db?characterEncoding=utf-8" />
+				<property name="username" value="qdm157297398" />
+				<property name="password" value="937zhang" />
 			</dataSource>
 		</environment>
 	</environments>
