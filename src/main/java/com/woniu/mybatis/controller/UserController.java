@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @author z.chenbin
  * @date : 2019/8/31
@@ -20,7 +22,7 @@ public class UserController {
     private UserService userService;
 
     /**
-     * add user
+     * add user  ----------register
      * @param user
      * @return
      */
@@ -37,18 +39,28 @@ public class UserController {
     }
 
     /**
-     * find user controller
+     * find user controller ----login
      * @param username
      * @param password
      * @return
      */
-    public Result<User> findUser(@RequestBody String username, @RequestBody String password ){
+    public Result<User> findUser(@RequestBody String username, @RequestBody String password , HttpSession session ){
         User user = userService.findUser(username,password);
         if (user == null ) {
             return new Result<User>(false,"user not found");
         }
+        session.setAttribute("user",user);
         return new Result<User>(true,user);
     }
 
+    /**
+     * find user info in session -----personal center
+     * @param session
+     * @return
+     */
+    @RequestMapping("/findUserInfo")
+    public User findUserInfo(HttpSession session){
+        return (User) session.getAttribute("user");
+    }
 
 }

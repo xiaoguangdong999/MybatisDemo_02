@@ -18,13 +18,13 @@ public class Book {
     private BigDecimal price;
     private BigDecimal nowPrice;
     private String status; //状态 1 上架   0  下架
-    private String decribe;
+    private String describe;
     private String bookNum; //编号
     private BookType booktype;  // 1 ,推荐  2 特价  3 精选   0  普通
     private BookCategory bookCategory;
     private BookImage bookImage;  //封面
 
-    public Book(int id, String name, String publish, String author, Date publishDate, BigDecimal price, BigDecimal nowPrice, String status, String decribe, String bookNum, BookType booktype, BookCategory bookCategory, BookImage bookImage) {
+    public Book(int id, String name, String publish, String author, Date publishDate, BigDecimal price, BigDecimal nowPrice, String status, String describe, String bookNum, BookType booktype, BookCategory bookCategory, BookImage bookImage) {
         this.id = id;
         this.name = name;
         this.publish = publish;
@@ -33,7 +33,7 @@ public class Book {
         this.price = price;
         this.nowPrice = nowPrice;
         this.status = status;
-        this.decribe = decribe;
+        this.describe = describe;
         this.bookNum = bookNum;
         this.booktype = booktype;
         this.bookCategory = bookCategory;
@@ -107,12 +107,12 @@ public class Book {
         this.status = status;
     }
 
-    public String getDecribe() {
-        return decribe;
+    public String getdescribe() {
+        return describe;
     }
 
-    public void setDecribe(String decribe) {
-        this.decribe = decribe;
+    public void setdescribe(String describe) {
+        this.describe = describe;
     }
 
     public String getBookNum() {

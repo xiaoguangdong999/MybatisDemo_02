@@ -16,33 +16,39 @@
     </cache>
 
 
-    <!--<resultMap type="book" id="bookMap">-->
-        <!--<id property="bookid" column="bookid" />-->
-        <!--<result property="bookName" column="bookName" />-->
-        <!--<result property="publish" column="publish"/>-->
-        <!--<result property="author" column="author"/>-->
-        <!--<result property="publishDate" column="publishDate"/>-->
-        <!--<result property="price" column="price"/>-->
-        <!--<result property="nowPrice" column="nowPrice"/>-->
-        <!--<result property="status" column="status"/>-->
-        <!--<result property="decription" column="decription"/>-->
-        <!--<result property="bookNum" column="bookNum"/>-->
-        <!--<result property="bookImg" column="bookImg"/>-->
+    <resultMap type="book" id="bookMap">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="publish" column="publish"/>
+        <result property="author" column="author"/>
+        <result property="publishDate" column="publish_date"/>
+        <result property="price" column="price"/>
+        <result property="nowPrice" column="now_price"/>
+        <result property="status" column="status"/>
+        <result property="describe" column="describe"/>
+        <result property="bookNum" column="book_num"/>
 
-        <!--&lt;!&ndash; 封装bookType对象 &ndash;&gt;-->
-        <!--<association property="booktype" javaType="bookType">-->
-            <!--<id property="typeid" column="typeid"/>-->
-            <!--<result property="typeName" column="typeName"/>-->
-            <!--<result property="decription" column="decription"/>-->
-        <!--</association>-->
+        <!-- 封装BookType对象 -->
+        <association property="booktype" javaType="bookType">
+            <id property="id" column="id"/>
+            <result property="typeName" column="type_name"/>
+            <result property="describe" column="describe"/>
+        </association>
 
-        <!--&lt;!&ndash; 封装Category对象 &ndash;&gt;-->
-        <!--<association property="category" javaType="category">-->
-            <!--<id property="cateid" column="cateid"/>-->
-            <!--<result property="cateName" column="cateName"/>-->
-            <!--<result property="decription" column="decription"/>-->
-        <!--</association>-->
-    <!--</resultMap>-->
+        <!-- 封装BookCategory对象 -->
+        <association property="bookCategory" javaType="category">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+            <result property="describe" column="describe"/>
+        </association>
+
+        <!-- 封装BookImage对象 -->
+        <association property="bookImage" javaType="category">
+            <id property="id" column="id"/>
+            <result property="path" column="path"/>
+            <result property="defaultCode" column="default_code"/>
+        </association>
+    </resultMap>
 
     <!--<select id="selectBookById" parameterType="int" resultMap="bookMap">-->
         <!--select * from t_book b ,t_booktype t ,t_category c-->
