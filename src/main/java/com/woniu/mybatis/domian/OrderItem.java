@@ -2,6 +2,7 @@ package com.woniu.mybatis.domian;
 
 import java.io.Serializable;
 
+
 public class OrderItem implements Serializable {
 	private int itemid ;
 	private int buyCount ;
