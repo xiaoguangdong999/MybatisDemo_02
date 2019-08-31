@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.mybatis.mapper.UserMapper">
+    <!-- 使用缓存   -->
+    <!-- <cache eviction="LRU"></cache> -->
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache">
+        <property name="timeToIdleSeconds" value="3600"/>
+        <property name="timeToLiveSeconds" value="3600"/>
+        <!-- 同ehcache参数maxElementsInMemory -->
+        <property name="maxEntriesLocalHeap" value="1000"/>
+        <!-- 同ehcache参数maxElementsOnDisk -->
+        <property name="maxEntriesLocalDisk" value="10000000"/>
+        <property name="memoryStoreEvictionPolicy" value="LRU"/>
+    </cache>
+
+
+    <resultMap type="user" id="userMap">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+
+    </resultMap>
+
+    <!-- 注意 keyProperty 属性，selectKey 标签，主键是id -->
+    <insert id="addUser" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+        <!-- 获取最近一次插入记录的主键值的方式 -->
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT @@IDENTITY
+        </selectKey>
+        insert into tmp_user(
+        username,
+        password,
+        address,
+        age,
+        sex,
+        phone,
+        birthday,
+        idcard,
+        email,
+        degree,
+        status,
+        attention_count,
+        header_image,
+        user_level) values(
+        #{username},
+        #{password},
+        #{address},
+        #{age},
+        #{sex},
+        #{phone},
+        #{birthday},#{idcard},#{email},#{degree},#{status},#{attentionCount},#{headerImage},#{userLevel})
+    </insert>
+
+
+    <select id="findUser" parameterType="int" resultMap="testMap">
+        select *
+        from tmp_test b
+        where b.id = #{id}
+    </select>
+
+
+</mapper>
